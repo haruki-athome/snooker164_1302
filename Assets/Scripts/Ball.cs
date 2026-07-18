@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 public enum BallColor
 {
     White,
@@ -11,7 +12,7 @@ public enum BallColor
     Pink
 }
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IPointerClickHandler
 
 {
     [SerializeField]
@@ -19,6 +20,14 @@ public class Ball : MonoBehaviour
 
     [SerializeField]
     private BallColor color;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log(point);
+        GameManager.instance.PlayerScor += point;
+        Destroy(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
