@@ -17,8 +17,9 @@ public class Ball : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private int point;
+    public int Point { get { return point; } set { point = value; } }
 
-    [SerializeField]
+	[SerializeField]
     private BallColor color;
 
     [SerializeField]
@@ -33,8 +34,9 @@ void Awake()
 	public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log(point);
-        GameManager.instance.PlayerScor += point;
         Destroy(gameObject);
+        GameManager.instance.PlayerScor += point;
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
