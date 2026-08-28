@@ -1,27 +1,25 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
 	private void OnTriggerEnter(Collider other)
 	{
-
 		Ball ball = other.GetComponent<Ball>();
 
 		if (ball != null)
 		{
 			if (ball.Point == 0)
 			{
-				GameManager.instance.ShowString($"son why u do EnsureThat to my ball");
-				Time.timeScale = 0;
+				GameManager.instance.PlayerLost();
 			}
 			else
 			{
+				AudioManager.instance.PlayScorePoint();
 				GameManager.instance.ShowScoreText(ball.Point);
+				GameManager.instance.BallRemoved();
 			}
 
 			Destroy(ball.gameObject);
 		}
 	}
-		
 }
